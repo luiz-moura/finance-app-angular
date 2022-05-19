@@ -44,7 +44,7 @@
         </td>
         <td class="px-6 py-4">
           <ng-template ngFor let-category [ngForOf]="transaction.categories">
-            <span class="text-white text-sm font-medium mr-2 px-2.5 py-0.5 rounded" style="background: {{ category.background }}">
+            <span class="text-white text-sm font-medium mr-2 px-2.5 py-0.5 rounded" [style.background]="category.background">
               {{ category.name }}
             </span>
           </ng-template>
