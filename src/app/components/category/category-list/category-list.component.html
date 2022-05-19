@@ -39,7 +39,9 @@
           {{ category.name }}
         </th>
         <td class="px-6 py-4">
-          {{ category.background }}
+          <span class="text-white text-sm font-semibold inline-flex items-center p-1.5 rounded-full dark:text-blue-800" [style.background]="category.background">
+            {{ category.background }}
+          </span>
         </td>
         <td class="px-6 py-4">
           <span class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
@@ -48,10 +50,10 @@
           </span>
         </td>
         <td class="px-6 py-4 text-right flex justify-end">
-          <a routerLink="/category/edit/{{ category.id }}" class="flex items-center mr-2 px-2.5 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800 rounded dark:bg-yellow-200 dark:text-yellow-900">
+          <a routerLink="/categories/edit/{{ category.id }}" class="flex items-center mr-2 px-2.5 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800 rounded dark:bg-yellow-200 dark:text-yellow-900">
             EDIT
           </a>
-          <a routerLink="/category/delete/{{ category.id }}" class="flex items-center mr-2 px-2.5 py-0.5 text-xs font-medium bg-red-100 text-red-800 rounded dark:bg-red-200 dark:text-red-900">
+          <a routerLink="/categories/delete/{{ category.id }}" class="flex items-center mr-2 px-2.5 py-0.5 text-xs font-medium bg-red-100 text-red-800 rounded dark:bg-red-200 dark:text-red-900">
             DELETE
           </a>
         </td>
