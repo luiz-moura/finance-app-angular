@@ -51,3 +51,21 @@ import 'zone.js';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+import 'inputmask';
+
+Inputmask.extendAliases({
+  'currency': {
+      radixPoint: ',',
+      groupSeparator: '.',
+      allowMinus: false,
+      prefix: 'R$ ',
+      digits: 2,
+      digitsOptional: false,
+      rightAlign: true,
+      unmaskAsNumber: true,
+      autoUnmask: true,
+      removeMaskOnSubmit: true,
+  },
+});
+
+Inputmask('currency').mask('.inputmask-currency');
