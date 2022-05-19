@@ -1,3 +1,7 @@
+import { CategoryDeleteComponent } from './components/category/category-delete/category-delete.component';
+import { CategoryEditComponent } from './components/category/category-edit/category-edit.component';
+import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
+import { CategoriesComponent } from './views/categories/categories.component';
 import { TransactionDeleteComponent } from './components/transaction/transaction-delete/transaction-delete.component';
 import { TransactionEditComponent } from './components/transaction/transaction-edit/transaction-edit.component';
 import { TransactionCreateComponent } from './components/transaction/transaction-create/transaction-create.component';
@@ -21,6 +25,22 @@ const routes: Routes = [
   {
     path: 'transactions/delete/:id',
     component: TransactionDeleteComponent
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent
+  },
+  {
+    path: 'categories/create',
+    component: CategoryCreateComponent
+  },
+  {
+    path: 'categories/edit/:id',
+    component: CategoryEditComponent
+  },
+  {
+    path: 'categories/delete/:id',
+    component: CategoryDeleteComponent
   },
 ];
 

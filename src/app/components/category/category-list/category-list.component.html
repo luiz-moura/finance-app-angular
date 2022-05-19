@@ -1,0 +1,61 @@
+<h1 class="text-lg mb-6">Categories</h1>
+
+<!-- Breadcrumb -->
+<nav class="flex py-3 px-5 mb-6 text-gray-700 bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
+  <ol class="inline-flex items-center space-x-1 md:space-x-3">
+    <li class="inline-flex items-center">
+      <a routerLink="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+        <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+        Home
+      </a>
+    </li>
+    <li>
+      <div class="flex items-center">
+        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <span class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">Categories</span>
+      </div>
+    </li>
+  </ol>
+</nav>
+
+<a routerLink="/categories/create" class="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-6">
+  <span class="material-symbols-rounded mr-3">add_circle</span>
+  Create
+</a>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">Name</th>
+        <th scope="col" class="px-6 py-3">Backgroind</th>
+        <th scope="col" class="px-6 py-3">Created</th>
+        <th scope="col" class="px-6 py-3"><span class="sr-only">Actions</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+          {{ category.name }}
+        </th>
+        <td class="px-6 py-4">
+          {{ category.background }}
+        </td>
+        <td class="px-6 py-4">
+          <span class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
+            <span class="material-symbols-rounded mr-1 text-sm">schedule</span>
+            {{ category.created_at | date }}
+          </span>
+        </td>
+        <td class="px-6 py-4 text-right flex justify-end">
+          <a routerLink="/category/edit/{{ category.id }}" class="flex items-center mr-2 px-2.5 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800 rounded dark:bg-yellow-200 dark:text-yellow-900">
+            EDIT
+          </a>
+          <a routerLink="/category/delete/{{ category.id }}" class="flex items-center mr-2 px-2.5 py-0.5 text-xs font-medium bg-red-100 text-red-800 rounded dark:bg-red-200 dark:text-red-900">
+            DELETE
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

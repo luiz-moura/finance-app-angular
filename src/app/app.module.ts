@@ -14,6 +14,11 @@ import { TransactionsComponent } from './views/transactions/transactions.compone
 import { TransactionEditComponent } from './components/transaction/transaction-edit/transaction-edit.component';
 import { TransactionListComponent } from './components/transaction/transaction-list/transaction-list.component';
 import { TransactionDeleteComponent } from './components/transaction/transaction-delete/transaction-delete.component';
+import { CategoriesComponent } from './views/categories/categories.component';
+import { CategoryListComponent } from './components/category/category-list/category-list.component';
+import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
+import { CategoryEditComponent } from './components/category/category-edit/category-edit.component';
+import { CategoryDeleteComponent } from './components/category/category-delete/category-delete.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,11 @@ import { TransactionDeleteComponent } from './components/transaction/transaction
     TransactionDeleteComponent,
     TransactionListComponent,
     TransactionEditComponent,
+    CategoriesComponent,
+    CategoryListComponent,
+    CategoryCreateComponent,
+    CategoryEditComponent,
+    CategoryDeleteComponent,
   ],
   imports: [
     BrowserModule,
