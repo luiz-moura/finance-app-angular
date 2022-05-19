@@ -1,8 +1,9 @@
 
-import { Category } from './category.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Category } from './category.model';
+import { Transaction } from './../transaction/transaction.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class CategoryService {
 
   delete(category: Category): Observable<Category> {
     return this.http.delete<Category>(`${this.baseUrl}/category/${category.id}`);
+  }
+
+  removeCatagory(transaction: Transaction, category: Category): Observable<Category> {
+    return this.http.delete<Category>(`${this.baseUrl}/transaction/${transaction.id}/category/${category.id}`);
   }
 }

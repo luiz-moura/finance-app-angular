@@ -19,6 +19,7 @@ import { CategoryListComponent } from './components/category/category-list/categ
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
 import { CategoryEditComponent } from './components/category/category-edit/category-edit.component';
 import { CategoryDeleteComponent } from './components/category/category-delete/category-delete.component';
+import { TransactionCategoryBadgeComponent } from './components/transaction/transaction-category-badge/transaction-category-badge.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CategoryDeleteComponent } from './components/category/category-delete/c
     CategoryCreateComponent,
     CategoryEditComponent,
     CategoryDeleteComponent,
+    TransactionCategoryBadgeComponent,
   ],
   imports: [
     BrowserModule,
