@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/template/nav/nav.component';
@@ -45,6 +47,8 @@ import { TransactionCategoryBadgeComponent } from './components/transaction/tran
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+	  ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
