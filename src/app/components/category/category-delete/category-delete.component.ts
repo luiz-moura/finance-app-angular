@@ -2,6 +2,7 @@ import { Category } from './../category.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from './../category.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category-delete',
@@ -9,15 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category-delete.component.css']
 })
 export class CategoryDeleteComponent implements OnInit {
-  category: Category = {
-    name: '',
-    background: ''
-  }
+  category!: Category ;
 
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toast: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +29,7 @@ export class CategoryDeleteComponent implements OnInit {
 
   delete(): void {
     this.categoryService.delete(this.category).subscribe(() => {
+      this.toast.success('Successfully deleted');
       this.router.navigate(['/categories']);
     });
   }

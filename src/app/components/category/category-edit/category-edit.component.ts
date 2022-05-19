@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Category } from './../category.model';
 import { CategoryService } from './../category.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,15 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category-edit.component.css']
 })
 export class CategoryEditComponent implements OnInit {
-  category: Category = {
-    name: '',
-    background: ''
-  }
+  category!: Category;
 
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toast: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -30,8 +29,8 @@ export class CategoryEditComponent implements OnInit {
 
   update(): void {
     this.categoryService.update(this.category).subscribe(() => {
+      this.toast.success('Successfully edited');
       this.router.navigate(['/categories']);
     });
   }
-
 }

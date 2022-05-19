@@ -2,6 +2,7 @@ import { Transaction } from './../transaction.model';
 import { TransactionService } from './../transaction.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-transaction-delete',
@@ -9,16 +10,13 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./transaction-delete.component.css']
 })
 export class TransactionDeleteComponent implements OnInit {
-  transaction: Transaction = {
-    title: '',
-    value: 0,
-    type: 'withdraw'
-  }
+  transaction!: Transaction;
 
   constructor(
     private transactionService: TransactionService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +29,7 @@ export class TransactionDeleteComponent implements OnInit {
 
   delete(): void {
     this.transactionService.delete(this.transaction).subscribe(() => {
+      this.toastr.success('Successfully deleted');
       this.router.navigate(['transactions']);
     });
   }

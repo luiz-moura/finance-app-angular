@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionService } from './../transaction.service';
 import { Transaction } from './../transaction.model';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-transaction-edit',
@@ -9,16 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transaction-edit.component.css']
 })
 export class TransactionEditComponent implements OnInit {
-  transaction: Transaction = {
-    title: '',
-    type: 'draw',
-    value: 0
-  }
+  transaction!: Transaction;
 
   constructor(
     private transactionService: TransactionService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +29,7 @@ export class TransactionEditComponent implements OnInit {
 
   update(): void {
     this.transactionService.update(this.transaction).subscribe(() => {
+      this.toastr.success('Successfully edited');
       this.router.navigate(['transactions']);
     });
   }
