@@ -45,10 +45,10 @@
            [(ngModel)]="transaction.value"
            required>
   </div>
-  <div class="mb-6">
+  <div class="mb-2">
     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type</label>
     <fieldset>
-      <legend class="sr-only">type</legend>
+      <legend class="sr-only">Type</legend>
 
       <div class="flex items-center mb-4">
         <input type="radio"
@@ -68,6 +68,16 @@
                class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
                [(ngModel)]="transaction.type">
         <label for="deposit" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Deposit</label>
+      </div>
+    </fieldset>
+  </div>
+  <div class="mb-6">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Categories</label>
+    <fieldset>
+      <legend class="sr-only">Categories</legend>
+      <div *ngFor="let category of categories" class="flex items-center mb-4">
+        <input id="checkbox-{{ category.id }}" type="checkbox" [value]="category.id" (change)="onCheckboxChange($event)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+        <label for="checkbox-{{ category.id }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ category.name }}</label>
       </div>
     </fieldset>
   </div>
