@@ -1,3 +1,4 @@
+import { HomeComponent } from './views/home/home.component';
 import { CategoryDeleteComponent } from './components/category/category-delete/category-delete.component';
 import { CategoryEditComponent } from './components/category/category-edit/category-edit.component';
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
@@ -10,6 +11,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent
+  },
   {
     path: 'transactions',
     component: TransactionsComponent
