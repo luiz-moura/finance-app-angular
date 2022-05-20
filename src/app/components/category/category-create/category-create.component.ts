@@ -10,7 +10,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./category-create.component.css']
 })
 export class CategoryCreateComponent implements OnInit {
-  category!: Category;
+  category: Category = {
+    name: '',
+    background: '#fff'
+  };
 
   constructor(
     private categoryService: CategoryService,
