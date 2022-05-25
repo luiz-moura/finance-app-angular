@@ -22,6 +22,7 @@ export class CategoryEditComponent implements OnInit {
   ) { }
 
   form = this.formBuilder.group({
+    id: [],
     name: ['', [Validators.required, Validators.minLength(3)]],
     background: ['#fff', Validators.required],
   });
@@ -31,6 +32,7 @@ export class CategoryEditComponent implements OnInit {
     this.categoryService.readById(id).subscribe((category) => {
       this.category = category;
 
+      this.form.get('id')?.setValue(category.id);
       this.form.get('name')?.setValue(category.name);
       this.form.get('background')?.setValue(category.background);
     });
