@@ -3,4 +3,5 @@ export interface Category {
   name: string;
   background: string;
   created_at?: string;
+  checked?: boolean;
 }

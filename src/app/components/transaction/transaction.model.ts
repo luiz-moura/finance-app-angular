@@ -9,4 +9,5 @@ export interface Transaction {
   created_at?: Date;
   categories?: Category[]|Array<any>;
   catkeys?: any;
+  image?: string;
 }

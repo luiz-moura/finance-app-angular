@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from './../../category/category.model';
-import { Transaction } from './../transaction.model';
 import { TransactionService } from './../transaction.service';
 import { CategoryService } from './../../category/category.service';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-transaction-create',
@@ -13,13 +12,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
   styleUrls: ['./transaction-create.component.css']
 })
 export class TransactionCreateComponent implements OnInit {
-  form: FormGroup;
+  imageURL!: string;
   categories!: Category[];
-  transaction: Transaction = {
-    title: '',
-    value: 0,
-    type: 'withdraw'
-  };
 
   constructor(
     private transactionService: TransactionService,
@@ -27,35 +21,53 @@ export class TransactionCreateComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private formBuilder: FormBuilder
-  ) {
-    this.form = this.formBuilder.group({
-      optCategories: this.formBuilder.array([], [Validators.required])
-    });
-  }
+  ) {}
+
+  form = this.formBuilder.group({
+    title: ['', [Validators.required, Validators.minLength(3)]],
+    value: [0, Validators.min(1)],
+    image: [''],
+    type: ['withdraw'],
+    categories: this.formBuilder.array([]),
+  });
 
   ngOnInit(): void {
-    this.categoryService.list().subscribe((categories) => {
+    this.categoryService.list().subscribe((categories: Category[]) => {
       this.categories = categories;
     });
   }
 
   create(): void {
-    this.transaction.categories = this.form.value.optCategories as Array<Number>;
-
-    this.transactionService.store(this.transaction).subscribe(() => {
+    this.transactionService.store(this.form.value).subscribe(() => {
       this.toastr.success('Successfully created');
-      this.router.navigate(['transactions'])
+      this.router.navigate(['transactions']);
     });
   }
 
-  onCheckboxChange(e: any) {
-    const optCategories: FormArray = this.form.get('optCategories') as FormArray;
+  onFileSelect(event: any) {
+    const files = event.target.files;
 
-    if (e.target.checked) {
-      optCategories.push(new FormControl(e.target.value));
+    if (files.length > 0) {
+      const file = files[0];
+      this.form.get('image')?.setValue(file);
+
+       // File Preview
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageURL = reader.result as string;
+      }
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onChange(event: any) {
+    const categories: FormArray = this.form.get('categories') as FormArray;
+
+    if (event.target.checked) {
+      categories.push(new FormControl(event.target.value));
     } else {
-      const index = optCategories.controls.findIndex(x => x.value === e.target.value);
-      optCategories.removeAt(index);
+      const index = categories.controls.findIndex(x => x.value === event.target.value);
+      categories.removeAt(index);
     }
   }
 }

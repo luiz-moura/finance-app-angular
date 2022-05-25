@@ -24,7 +24,7 @@
   </ol>
 </nav>
 
-<form *ngIf="transaction">
+<form *ngIf="transaction" [formGroup]="form" (ngSubmit)="delete()">
   <div class="mb-6">
     <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
     <input type="text"
@@ -32,8 +32,7 @@
            id="title"
            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
            autocomplete="off"
-           [(ngModel)]="transaction.title"
-           disabled>
+           formControlName="title">
   </div>
   <div class="mb-6">
     <label for="value" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Value</label>
@@ -42,34 +41,46 @@
            id="value"
            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
            autocomplete="off"
-           [(ngModel)]="transaction.value"
-           disabled>
+           formControlName="value">
   </div>
   <div class="mb-6">
     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type</label>
     <fieldset>
-      <legend class="sr-only">type</legend>
-
+      <legend class="sr-only">Type</legend>
       <div class="flex items-center mb-4">
         <input type="radio"
                name="type"
                id="withdraw"
                value="withdraw"
                class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
-               [(ngModel)]="transaction.type"
-               disabled>
+               formControlName="type">
         <label for="withdraw" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Withdraw</label>
       </div>
-
       <div class="flex items-center mb-4">
         <input type="radio"
                name="type"
                id="deposit"
                value="deposit"
                class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
-               [(ngModel)]="transaction.type"
-               disabled>
+               formControlName="type"
+  >
         <label for="deposit" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Deposit</label>
+      </div>
+    </fieldset>
+  </div>
+  <div class="mb-6">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Categories</label>
+    <fieldset>
+      <legend class="sr-only">Categories</legend>
+      <div *ngFor="let category of categories" class="flex items-center mb-4">
+        <input type="checkbox"
+               name="category"
+               [value]="category.id"
+               id="cat-{{ category.id }}"
+               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+               [checked]="category.checked"
+               disabled>
+        <label for="cat-{{ category.id }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ category.name }}</label>
       </div>
     </fieldset>
   </div>
