@@ -24,8 +24,8 @@ export class TransactionCategoryBadgeComponent implements OnInit, OnDestroy {
 
   remove(): void {
     this.categoryService.removeCatagory(this.transaction, this.category).subscribe(() => {
-      this.toastr.success('Successfully deleted');
       this.ngOnDestroy();
+      this.toastr.success('Successfully deleted');
     });
   }
 

@@ -57,8 +57,6 @@ export class TransactionEditComponent implements OnInit {
   }
 
   update(): void {
-    console.log(this.form.value);
-
     this.transactionService.update(this.form.value).subscribe(() => {
       this.toastr.success('Successfully edited');
       this.router.navigate(['transactions']);

@@ -52,6 +52,8 @@ export class TransactionDeleteComponent implements OnInit {
       this.categories.forEach((category) => {
         category.checked = transaction.catkeys?.includes(category.id);
       });
+
+      this.form.disable();
     });
   }
 

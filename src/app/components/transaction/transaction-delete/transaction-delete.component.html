@@ -62,8 +62,7 @@
                id="deposit"
                value="deposit"
                class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
-               formControlName="type"
-  >
+               formControlName="type">
         <label for="deposit" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Deposit</label>
       </div>
     </fieldset>
@@ -84,6 +83,6 @@
       </div>
     </fieldset>
   </div>
-  <button type="button" (click)="delete()" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 mr-2">Delete</button>
+  <button [disabled]="form.invalid" type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 mr-2">Delete</button>
   <a routerLink="/transactions" class="text-white bg-yellow-500 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Cancel</a>
 </form>
