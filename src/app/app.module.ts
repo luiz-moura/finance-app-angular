@@ -23,6 +23,8 @@ import { CategoryCreateComponent } from './components/category/category-create/c
 import { CategoryEditComponent } from './components/category/category-edit/category-edit.component';
 import { CategoryDeleteComponent } from './components/category/category-delete/category-delete.component';
 import { TransactionCategoryBadgeComponent } from './components/transaction/transaction-category-badge/transaction-category-badge.component';
+import { BreadcrumbContainerComponent } from './components/template/breadcrumb/breadcrumb-container/breadcrumb-container.component';
+import { BreadcrumbItemComponent } from './components/template/breadcrumb/breadcrumb-item/breadcrumb-item.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { TransactionCategoryBadgeComponent } from './components/transaction/tran
     CategoryDeleteComponent,
     TransactionCategoryBadgeComponent,
     HomeComponent,
+    BreadcrumbContainerComponent,
+    BreadcrumbItemComponent,
   ],
   imports: [
     BrowserModule,
