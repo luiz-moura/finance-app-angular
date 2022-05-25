@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transaction-list.component.css']
 })
 export class TransactionListComponent implements OnInit {
-  transactions: Transaction[] = [];
+  transactions!: Transaction[];
 
   constructor(private transactionService: TransactionService) {}
 

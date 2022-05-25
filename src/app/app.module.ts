@@ -25,6 +25,7 @@ import { CategoryDeleteComponent } from './components/category/category-delete/c
 import { TransactionCategoryBadgeComponent } from './components/transaction/transaction-category-badge/transaction-category-badge.component';
 import { BreadcrumbContainerComponent } from './components/template/breadcrumb/breadcrumb-container/breadcrumb-container.component';
 import { BreadcrumbItemComponent } from './components/template/breadcrumb/breadcrumb-item/breadcrumb-item.component';
+import { LoadingComponent } from './components/template/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { BreadcrumbItemComponent } from './components/template/breadcrumb/breadc
     HomeComponent,
     BreadcrumbContainerComponent,
     BreadcrumbItemComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
