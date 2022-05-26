@@ -1,0 +1,58 @@
+<h1 class="text-lg mb-6">Budgets</h1>
+
+<app-breadcrumb-container>
+  <app-breadcrumb-item name="Home" route="/"></app-breadcrumb-item>
+  <app-breadcrumb-item name="Budgets"></app-breadcrumb-item>
+</app-breadcrumb-container>
+
+<a routerLink="/budgets/create" class="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-6">
+  <span class="material-symbols-rounded mr-3">add_circle</span>
+  Create
+</a>
+
+<div *ngIf="budgets; else loading" class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">Name</th>
+        <th scope="col" class="px-6 py-3">Value</th>
+        <th scope="col" class="px-6 py-3">Category</th>
+        <th scope="col" class="px-6 py-3">Created At</th>
+        <th scope="col" class="px-6 py-3"><span class="sr-only">Actions</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let budget of budgets" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+          {{ budget.name }}
+        </th>
+        <td class="px-6 py-4">
+          {{ budget.value }}
+        </td>
+        <td class="px-6 py-4">
+          <span class="text-white text-sm font-semibold inline-flex items-center p-1.5 rounded-full dark:text-blue-800" [style.background]="budget.category.background">
+            {{ budget.category.name }}
+          </span>
+        </td>
+        <td class="px-6 py-4">
+          <span class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
+            <span class="material-symbols-rounded mr-1 text-sm">schedule</span>
+            {{ budget.created_at | date }}
+          </span>
+        </td>
+        <td class="px-6 py-4 text-right flex justify-end">
+          <a routerLink="/budgets/edit/{{ budget.id }}" class="flex items-center mr-2 px-2.5 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800 rounded dark:bg-yellow-200 dark:text-yellow-900">
+            EDIT
+          </a>
+          <a routerLink="/budgets/delete/{{ budget.id }}" class="flex items-center mr-2 px-2.5 py-0.5 text-xs font-medium bg-red-100 text-red-800 rounded dark:bg-red-200 dark:text-red-900">
+            DELETE
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

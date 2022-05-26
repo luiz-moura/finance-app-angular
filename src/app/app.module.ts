@@ -26,6 +26,9 @@ import { TransactionCategoryBadgeComponent } from './components/transaction/tran
 import { BreadcrumbContainerComponent } from './components/template/breadcrumb/breadcrumb-container/breadcrumb-container.component';
 import { BreadcrumbItemComponent } from './components/template/breadcrumb/breadcrumb-item/breadcrumb-item.component';
 import { LoadingComponent } from './components/template/loading/loading.component';
+import { BudgetsComponent } from './views/budgets/budgets.component';
+import { BudgetCreateComponent } from './components/budget/budget-create/budget-create.component';
+import { BudgetListComponent } from './components/budget/budget-list/budget-list.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { LoadingComponent } from './components/template/loading/loading.componen
     BreadcrumbContainerComponent,
     BreadcrumbItemComponent,
     LoadingComponent,
+    BudgetsComponent,
+    BudgetCreateComponent,
+    BudgetListComponent,
   ],
   imports: [
     BrowserModule,
