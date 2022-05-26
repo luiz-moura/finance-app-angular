@@ -1,3 +1,4 @@
+import { BudgetDeleteComponent } from './components/budget/budget-delete/budget-delete.component';
 import { BudgetEditComponent } from './components/budget/budget-edit/budget-edit.component';
 import { BudgetCreateComponent } from './components/budget/budget-create/budget-create.component';
 import { BudgetsComponent } from './views/budgets/budgets.component';
@@ -61,6 +62,10 @@ const routes: Routes = [
   {
     path: 'budgets/edit/:id',
     component: BudgetEditComponent
+  },
+  {
+    path: 'budgets/delete/:id',
+    component: BudgetDeleteComponent
   },
 ];
 
