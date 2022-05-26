@@ -29,6 +29,7 @@ import { LoadingComponent } from './components/template/loading/loading.componen
 import { BudgetsComponent } from './views/budgets/budgets.component';
 import { BudgetCreateComponent } from './components/budget/budget-create/budget-create.component';
 import { BudgetListComponent } from './components/budget/budget-list/budget-list.component';
+import { BudgetEditComponent } from './components/budget/budget-edit/budget-edit.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { BudgetListComponent } from './components/budget/budget-list/budget-list
     BudgetsComponent,
     BudgetCreateComponent,
     BudgetListComponent,
+    BudgetEditComponent,
   ],
   imports: [
     BrowserModule,
