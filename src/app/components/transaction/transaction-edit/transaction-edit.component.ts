@@ -7,13 +7,17 @@ import { Transaction } from './../transaction.model';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
+interface ITransaction extends Omit<Transaction, 'id'> {
+  id: number;
+}
+
 @Component({
   selector: 'app-transaction-edit',
   templateUrl: './transaction-edit.component.html',
   styleUrls: ['./transaction-edit.component.css']
 })
 export class TransactionEditComponent implements OnInit {
-  transaction!: Transaction;
+  transaction!: ITransaction;
   categories!: Category[];
   imageURL!: string;
 
@@ -42,13 +46,16 @@ export class TransactionEditComponent implements OnInit {
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.transactionService.readById(id).subscribe(transaction => {
-      this.transaction = transaction;
+      this.transaction = transaction as ITransaction;
 
       this.form.get('id')?.setValue(transaction.id);
       this.form.get('title')?.setValue(transaction.title);
       this.form.get('value')?.setValue(transaction.value);
       this.form.get('type')?.setValue(transaction.type);
-      this.form.get('image')?.setValue(transaction.image);
+
+      if (transaction.image) {
+        this.imageURL = `${this.transactionService.baseUrl}/${transaction.image_url}`;
+      }
 
       this.categories.forEach((category) => {
         category.checked = transaction.catkeys?.includes(category.id);
@@ -57,7 +64,14 @@ export class TransactionEditComponent implements OnInit {
   }
 
   update(): void {
-    this.transactionService.update(this.form.value).subscribe(() => {
+    const formData = new FormData();
+    formData.append('title', this.form.get('title')?.value);
+    formData.append('value', this.form.get('value')?.value);
+    formData.append('image', this.form.get('image')?.value);
+    formData.append('type', this.form.get('type')?.value);
+    formData.append('categories', this.form.get('categories')?.value);
+
+    this.transactionService.update(this.transaction.id, formData).subscribe(() => {
       this.toastr.success('Successfully edited');
       this.router.navigate(['transactions']);
     });

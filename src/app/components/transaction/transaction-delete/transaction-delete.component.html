@@ -26,6 +26,20 @@
            formControlName="value">
   </div>
   <div class="mb-6">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload file</label>
+    <input type="file"
+           aria-describedby="file_input_help"
+           id="file_input"
+           class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+           accept="image/*"
+           disabled>
+    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+    <!-- Image Preview -->
+    <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+      <img [src]="imageURL" class="shadow-lg rounded max-w-full align-middle border-none h-40 mt-4">
+    </div>
+  </div>
+  <div class="mb-6">
     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Type</label>
     <fieldset>
       <legend class="sr-only">Type</legend>

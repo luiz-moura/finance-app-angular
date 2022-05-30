@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 export class TransactionDeleteComponent implements OnInit {
   transaction!: Transaction;
   categories!: Category[];
+  imageURL!: string;
 
   constructor(
     private transactionService: TransactionService,
@@ -47,7 +48,10 @@ export class TransactionDeleteComponent implements OnInit {
       this.form.get('title')?.setValue(transaction.title);
       this.form.get('value')?.setValue(transaction.value);
       this.form.get('type')?.setValue(transaction.type);
-      this.form.get('image')?.setValue(transaction.image);
+
+      if (transaction.image) {
+        this.imageURL = `${this.transactionService.baseUrl}/${transaction.image_url}`;
+      }
 
       this.categories.forEach((category) => {
         category.checked = transaction.catkeys?.includes(category.id);

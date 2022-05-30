@@ -10,4 +10,5 @@ export interface Transaction {
   categories?: Category[]|Array<any>;
   catkeys?: any;
   image?: string;
+  image_url?: string;
 }

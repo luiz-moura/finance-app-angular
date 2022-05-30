@@ -38,7 +38,14 @@ export class TransactionCreateComponent implements OnInit {
   }
 
   create(): void {
-    this.transactionService.store(this.form.value).subscribe(() => {
+    const formData = new FormData();
+    formData.append('title', this.form.get('title')?.value);
+    formData.append('value', this.form.get('value')?.value);
+    formData.append('image', this.form.get('image')?.value);
+    formData.append('type', this.form.get('type')?.value);
+    formData.append('categories', this.form.get('categories')?.value);
+
+    this.transactionService.store(formData).subscribe(() => {
       this.toastr.success('Successfully created');
       this.router.navigate(['transactions']);
     });

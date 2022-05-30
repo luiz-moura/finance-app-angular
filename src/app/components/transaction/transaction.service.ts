@@ -1,4 +1,3 @@
-
 import { Transaction } from './transaction.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -8,29 +7,29 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TransactionService {
-  baseUrl = 'https://localhost:8000/api'
+  baseUrl = 'https://localhost:8000';
 
   constructor(
     private http: HttpClient
   ) { }
 
   list(): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(`${this.baseUrl}/transaction`);
+    return this.http.get<Transaction[]>(`${this.baseUrl}/api/transaction`);
   }
 
-  store(transaction: Transaction): Observable<Transaction> {
-    return this.http.post<Transaction>(`${this.baseUrl}/transaction`, transaction);
+  store(transaction: FormData): Observable<Transaction> {
+    return this.http.post<Transaction>(`${this.baseUrl}/api/transaction`, transaction);
   }
 
-  update(transaction: Transaction): Observable<Transaction> {
-    return this.http.put<Transaction>(`${this.baseUrl}/transaction/${transaction.id}`, transaction);
+  update(id: number, transaction: FormData): Observable<Transaction> {
+    return this.http.post<Transaction>(`${this.baseUrl}/api/transaction/${id}`, transaction);
   }
 
-  readById(id: Number): Observable<Transaction> {
-    return this.http.get<Transaction>(`${this.baseUrl}/transaction/${id}`);
+  readById(id: number): Observable<Transaction> {
+    return this.http.get<Transaction>(`${this.baseUrl}/api/transaction/${id}`);
   }
 
   delete(transaction: Transaction): Observable<Transaction> {
-    return this.http.delete<Transaction>(`${this.baseUrl}/transaction/${transaction.id}`);
+    return this.http.delete<Transaction>(`${this.baseUrl}/api/transaction/${transaction.id}`);
   }
 }
